@@ -7,7 +7,6 @@ import com.example.account.exception.AccountException;
 import com.example.account.repository.AccountRepository;
 import com.example.account.repository.AccountUserRepository;
 import com.example.account.type.AccountStatus;
-import com.example.account.type.ErrorCode;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -69,7 +68,7 @@ public class AccountService {
     }
 
     private void validateCreateAccount(AccountUser accountUser, Account account) {
-        if(!Objects.equals(accountUser.getId(), account.getAccountUser().getId())) {
+        if (!Objects.equals(accountUser.getId(), account.getAccountUser().getId())) {
             throw new AccountException(USER_ACCOUNT_UN_MATCH);
         }
         if (account.getAccountStatus() == AccountStatus.UNREGISTERED) {
